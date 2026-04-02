@@ -3,6 +3,7 @@ package com.sandesh.api.tests;
 import com.sandesh.api.api.BookingService;
 import com.sandesh.api.models.Booking;
 import com.sandesh.api.models.BookingDates;
+import com.sandesh.api.utils.BookingFactory;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -17,14 +18,7 @@ public class BookingTest {
 
         BookingDates dates = new BookingDates("2024-01-01", "2024-01-05");
 
-        Booking booking = new Booking(
-                "Sandy",
-                "G",
-                1000,
-                true,
-                dates,
-                "Breakfast"
-        );
+        Booking booking = BookingFactory.createValidBooking();
         Response createResponse =
                 bookingService.createBooking(booking);
 
